@@ -2,20 +2,41 @@
   "name": "SnapTower",
   "short_name": "SnapTower",
   "description": "Stack blocks as high as you can! A fast-paced hyper-casual stacking game.",
-  "start_url": "/index.html",
+  "start_url": "/SnapTower/index.html",
+  "scope": "/SnapTower/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#1a3a6e",
   "theme_color": "#00f5d4",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "src": "/SnapTower/launchericon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
     },
     {
-      "src": "icon-512.png",
+      "src": "/SnapTower/launchericon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/SnapTower/launchericon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/SnapTower/launchericon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/SnapTower/launchericon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/SnapTower/launchericon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
