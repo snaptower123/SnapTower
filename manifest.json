@@ -2,13 +2,13 @@
   "name": "SnapTower",
   "short_name": "SnapTower",
   "description": "Stack blocks as high as you can in this addictive hyper-casual game!",
-  "start_url": "/",
+  "start_url": "/SnapTower/",
   "display": "fullscreen",
   "orientation": "portrait",
   "background_color": "#1a3a6e",
   "theme_color": "#00f5d4",
   "lang": "he",
-  "scope": "/",
+  "scope": "/SnapTower/",
   "categories": ["games", "entertainment"],
   "icons": [
     {
@@ -22,14 +22,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "screenshot.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
     }
   ]
 }
