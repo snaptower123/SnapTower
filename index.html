@@ -269,10 +269,17 @@ canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; m
       </button>
     </div>
   </div>
-  <div style="flex:1;min-height:10px"></div>
+  <div style="flex:0.2;min-height:4px"></div>
   <div class="ov-title">SNAP<span>TOWER</span></div>
   <div class="ov-sub">Choose mode and press play</div>
-  <div style="flex:0.6;min-height:8px"></div>
+  <div style="min-height:8px"></div>
+  <div style="display:flex;gap:8px;direction:ltr;justify-content:center;width:90%;max-width:360px;">
+    <button onclick="openShop()" style="flex:1;background:linear-gradient(135deg,#ffd60a,#ff9500);color:#000;border:none;padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:900;border-radius:50px;cursor:pointer;">🛒 SHOP</button>
+    <button onclick="openSkins()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🎨 SKINS</button>
+    <button onclick="openBgScreen()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🖼️ BG</button>
+    <button onclick="openAch()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🏅 ACH</button>
+  </div>
+  <div style="min-height:10px"></div>
   <div class="mode-grid">
     <div class="mode-btn sel" style="--mc:#00f5d4" onclick="selectMode('classic',this)">
       <div class="mico">🎮</div>
@@ -305,16 +312,9 @@ canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; m
       <div class="mbest" id="best-flip" style="margin-top:6px;font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:#00e5ff">–</div>
     </div>
   </div>
-  <div style="flex:0.3;min-height:6px"></div>
+  <div style="min-height:8px"></div>
   <button class="play-btn" onclick="startGame()" style="width:90%;max-width:360px;">▶ PLAY</button>
-  <div style="flex:0.3;min-height:6px"></div>
-  <div style="display:flex;gap:8px;direction:ltr;justify-content:center;width:90%;max-width:360px;">
-    <button onclick="openShop()" style="flex:1;background:linear-gradient(135deg,#ffd60a,#ff9500);color:#000;border:none;padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:900;border-radius:50px;cursor:pointer;">🛒 SHOP</button>
-    <button onclick="openSkins()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🎨 SKINS</button>
-    <button onclick="openBgScreen()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🖼️ BG</button>
-    <button onclick="openAch()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🏅 ACH</button>
-  </div>
-  <div style="flex:0.3;min-height:6px"></div>
+  <div style="min-height:8px"></div>
   <button onclick="openLb()" style="background:linear-gradient(135deg,#00f5d4,#0096c7);color:#000;border:none;padding:14px 0;font-family:'Rubik',sans-serif;font-size:13px;font-weight:900;letter-spacing:2px;border-radius:50px;cursor:pointer;width:90%;max-width:360px;">LEADERBOARD 🏆</button>
 </div>
 
