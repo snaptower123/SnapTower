@@ -34,7 +34,7 @@ body {
 #mode-badge { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 14px; border-radius:20px; border:1px solid; }
 canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; max-width:100%; }
 #combo-pop { position:fixed; top:28%; left:50%; transform:translate(-50%,-50%); font-family:'Orbitron',monospace; font-size:26px; font-weight:900; color:#00f5d4; text-shadow:0 0 30px #00f5d4; pointer-events:none; z-index:200; opacity:0; }
-#overlay { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:space-between; z-index:100; background:rgba(26,58,110,0.96); backdrop-filter:blur(10px); gap:0; overflow-y:auto; overscroll-behavior:contain; padding: 16px 16px 24px; box-sizing:border-box; height: var(--real-vh, 100vh); max-height: var(--real-vh, 100vh); }
+#overlay { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; z-index:100; background:rgba(26,58,110,0.96); backdrop-filter:blur(10px); gap:8px; overflow-y:auto; overscroll-behavior:contain; padding: 12px 16px 24px; box-sizing:border-box; height: var(--real-vh, 100vh); max-height: var(--real-vh, 100vh); }
 .ov-title { font-family:'Orbitron',monospace; font-size:clamp(22px,6vw,40px); font-weight:900; color:#00f5d4; text-shadow:0 0 30px rgba(0,245,212,0.5); letter-spacing:4px; line-height:1; }
 .ov-title span { color:#ff006e; text-shadow:0 0 30px rgba(255,0,110,0.5); }
 .ov-sub { font-size:11px; color:rgba(255,255,255,0.35); letter-spacing:2px; margin:5px 0 12px; }
@@ -269,18 +269,15 @@ canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; m
       </button>
     </div>
   </div>
-  <div style="min-height:4px"></div>
   <div class="ov-title">SNAP<span>TOWER</span></div>
-  <div class="ov-sub">Choose mode and press play</div>
-  <div style="min-height:8px"></div>
-  <div style="display:flex;gap:8px;direction:ltr;justify-content:center;width:90%;max-width:360px;">
+  <div class="ov-sub" style="margin-top:-6px;">Choose mode and press play</div>
+  <div style="display:flex;gap:8px;direction:ltr;justify-content:center;width:90%;max-width:360px;margin-top:30px;">
     <button onclick="openShop()" style="flex:1;background:linear-gradient(135deg,#ffd60a,#ff9500);color:#000;border:none;padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:900;border-radius:50px;cursor:pointer;">🛒 SHOP</button>
     <button onclick="openSkins()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🎨 SKINS</button>
     <button onclick="openBgScreen()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🖼️ BG</button>
     <button onclick="openAch()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🏅 ACH</button>
   </div>
-  <div style="min-height:10px"></div>
-  <div class="mode-grid">
+  <div class="mode-grid" style="margin-top:30px;">
     <div class="mode-btn sel" style="--mc:#00f5d4" onclick="selectMode('classic',this)">
       <div class="mico">🎮</div>
       <div class="mname" style="color:#00f5d4">CLASSIC</div>
@@ -312,10 +309,8 @@ canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; m
       <div class="mbest" id="best-flip" style="margin-top:6px;font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:#00e5ff">–</div>
     </div>
   </div>
-  <div style="min-height:8px"></div>
-  <button class="play-btn" onclick="startGame()" style="width:90%;max-width:360px;">▶ PLAY</button>
-  <div style="min-height:8px"></div>
-  <button onclick="openLb()" style="background:linear-gradient(135deg,#00f5d4,#0096c7);color:#000;border:none;padding:14px 0;font-family:'Rubik',sans-serif;font-size:13px;font-weight:900;letter-spacing:2px;border-radius:50px;cursor:pointer;width:90%;max-width:360px;">LEADERBOARD 🏆</button>
+  <button class="play-btn" onclick="startGame()" style="width:90%;max-width:360px;margin-top:30px;">▶ PLAY</button>
+  <button onclick="openLb()" style="background:linear-gradient(135deg,#00f5d4,#0096c7);color:#000;border:none;padding:14px 0;font-family:'Rubik',sans-serif;font-size:13px;font-weight:900;letter-spacing:2px;border-radius:50px;cursor:pointer;width:90%;max-width:360px;margin-top:30px;">LEADERBOARD 🏆</button>
 </div>
 
 <!-- SOUND SETTINGS PANEL -->
@@ -1017,7 +1012,7 @@ function goHome(){
       </div>
     </div>
     <button class="play-btn" onclick="startGame()">▶ PLAY</button>
-    <div style="display:flex;gap:6px;margin-top:12px;direction:ltr;justify-content:center;">
+    <div style="display:flex;gap:6px;margin-top:30px;direction:ltr;justify-content:center;">
       <button onclick="openShop()" style="background:linear-gradient(135deg,#ffd60a,#ff9500);color:#000;border:none;padding:9px 16px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:900;border-radius:50px;cursor:pointer;">🛒 SHOP</button>
       <button onclick="openSkins()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:9px 14px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🎨 SKINS</button>
       <button onclick="openBgScreen()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:9px 14px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🖼️ BG</button>
