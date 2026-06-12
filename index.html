@@ -34,11 +34,11 @@ body {
 #mode-badge { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 14px; border-radius:20px; border:1px solid; }
 canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; max-width:100%; }
 #combo-pop { position:fixed; top:28%; left:50%; transform:translate(-50%,-50%); font-family:'Orbitron',monospace; font-size:26px; font-weight:900; color:#00f5d4; text-shadow:0 0 30px #00f5d4; pointer-events:none; z-index:200; opacity:0; }
-#overlay { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:100; background:rgba(26,58,110,0.96); backdrop-filter:blur(10px); gap:0; overflow-y:auto; overscroll-behavior:contain; }
+#overlay { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:space-between; z-index:100; background:rgba(26,58,110,0.96); backdrop-filter:blur(10px); gap:0; overflow-y:auto; overscroll-behavior:contain; padding: env(safe-area-inset-top,16px) 16px env(safe-area-inset-bottom,24px); box-sizing:border-box; }
 .ov-title { font-family:'Orbitron',monospace; font-size:clamp(22px,6vw,40px); font-weight:900; color:#00f5d4; text-shadow:0 0 30px rgba(0,245,212,0.5); letter-spacing:4px; line-height:1; }
 .ov-title span { color:#ff006e; text-shadow:0 0 30px rgba(255,0,110,0.5); }
 .ov-sub { font-size:11px; color:rgba(255,255,255,0.35); letter-spacing:2px; margin:5px 0 12px; }
-.mode-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:10px; width:100%; max-width:310px; justify-items:center; direction:ltr; }
+.mode-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:0; width:90%; max-width:360px; justify-items:center; direction:ltr; }
 .mode-btn { display:flex; flex-direction:column; align-items:center; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:6px 4px; cursor:pointer; transition:all 0.2s; width:100%; font-family:'Rubik',sans-serif; direction:ltr; }
 /* 2 כרטיסיות בשורה השנייה — ממורכזות */
 .mode-grid .mode-btn:nth-child(4) { grid-column:1; }
@@ -303,14 +303,14 @@ canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; m
       <div class="mbest" id="best-flip" style="margin-top:6px;font-family:'Orbitron',monospace;font-size:13px;font-weight:900;color:#00e5ff">–</div>
     </div>
   </div>
-  <button class="play-btn" onclick="startGame()">▶ PLAY</button>
-  <div style="display:flex;gap:6px;margin-top:10px;direction:ltr;justify-content:center;flex-wrap:wrap;">
-    <button onclick="openShop()" style="background:linear-gradient(135deg,#ffd60a,#ff9500);color:#000;border:none;padding:8px 14px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:900;border-radius:50px;cursor:pointer;">🛒 SHOP</button>
-    <button onclick="openSkins()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:8px 12px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🎨 SKINS</button>
-    <button onclick="openBgScreen()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:8px 12px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🖼️ BG</button>
-    <button onclick="openAch()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:8px 12px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🏅 ACH</button>
+  <button class="play-btn" onclick="startGame()" style="width:90%;max-width:360px;">▶ PLAY</button>
+  <div style="display:flex;gap:8px;direction:ltr;justify-content:center;width:90%;max-width:360px;">
+    <button onclick="openShop()" style="flex:1;background:linear-gradient(135deg,#ffd60a,#ff9500);color:#000;border:none;padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:900;border-radius:50px;cursor:pointer;">🛒 SHOP</button>
+    <button onclick="openSkins()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🎨 SKINS</button>
+    <button onclick="openBgScreen()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🖼️ BG</button>
+    <button onclick="openAch()" style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);padding:12px 4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:700;border-radius:50px;cursor:pointer;">🏅 ACH</button>
   </div>
-  <button onclick="openLb()" style="background:linear-gradient(135deg,#00f5d4,#0096c7);color:#000;border:none;padding:9px 0;font-family:'Rubik',sans-serif;font-size:13px;font-weight:900;letter-spacing:2px;border-radius:50px;cursor:pointer;margin-top:8px;width:75%;">🏆 LEADERBOARD</button>
+  <button onclick="openLb()" style="background:linear-gradient(135deg,#00f5d4,#0096c7);color:#000;border:none;padding:14px 0;font-family:'Rubik',sans-serif;font-size:13px;font-weight:900;letter-spacing:2px;border-radius:50px;cursor:pointer;width:90%;max-width:360px;">LEADERBOARD 🏆</button>
 </div>
 
 <!-- SOUND SETTINGS PANEL -->
@@ -373,6 +373,12 @@ canvas { display:block; border-radius:16px; cursor:pointer; touch-action:none; m
 
 
 
+
+// מניעת זום באצבעות
+document.addEventListener('gesturestart', function(e){ e.preventDefault(); }, {passive:false});
+document.addEventListener('gesturechange', function(e){ e.preventDefault(); }, {passive:false});
+document.addEventListener('gestureend', function(e){ e.preventDefault(); }, {passive:false});
+document.addEventListener('touchmove', function(e){ if(e.touches.length > 1){ e.preventDefault(); } }, {passive:false});
 
 // מסך טעינה — ראשון מכל!
 (function(){
@@ -578,7 +584,7 @@ setTimeout(updateSoundMenuBtn, 100);
 // GAME
 const canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
 const availW = Math.min(window.innerWidth, 420) - 8;
-const availH = window.innerHeight - 140;
+const availH = window.innerHeight * 0.62;
 const SIZE = Math.min(availW, availH);
 canvas.width=SIZE; canvas.height=SIZE;
 canvas.style.width = SIZE+'px';
