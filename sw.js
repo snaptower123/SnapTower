@@ -1,4 +1,4 @@
-const CACHE_NAME = 'snaptower-v1';
+const CACHE_NAME = 'snaptower-v2';
 const ASSETS = [
   '/',
   '/index.html',
