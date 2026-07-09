@@ -2647,25 +2647,98 @@ const useIAP = true;
 }
 
 
-function showIAPDialog(item){
+  // ─── DIGITAL GOODS API (Google Play Billing) ───
+let digitalGoodsService = null;
+
+async function initDigitalGoods(){
+  try {
+    if('getDigitalGoodsService' in window){
+      digitalGoodsService = await window.getDigitalGoodsService('https://play.google.com/billing');
+    }
+  } catch(e){ digitalGoodsService = null; }
+}
+
+async function showIAPDialog(item){
+  // נסה Digital Goods API
+  if(digitalGoodsService){
+    try {
+      const details = await digitalGoodsService.getDetails([item.id]);
+      if(details && details.length > 0){
+        const d = details[0];
+        const payment = new PaymentRequest(
+          [{ supportedMethods: 'https://play.google.com/billing', data: { sku: item.id } }],
+          { total: { label: d.title, amount: d.price } }
+        );
+        const response = await payment.show();
+        await response.complete('success');
+        // רכישה הצליחה — הפעל את הפריט
+        handlePurchaseSuccess(item.id, response.details.token);
+        return;
+      }
+    } catch(e){
+      if(e.name !== 'AbortError') console.log('Payment error:', e);
+      return;
+    }
+  }
+  // fallback — Coming Soon
   const d=document.createElement('div');
   d.style.cssText='position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;';
   d.innerHTML=`<div style="background:#1a3a6e;border:1px solid #ffd60a;border-radius:20px;padding:28px 24px;width:280px;text-align:center;">
-    <div style="font-size:40px;margin-bottom:10px;">${item.icon}</div>
+    <div style="font-size:40px;margin-bottom:10px;">${item.icon||'🛒'}</div>
     <div style="font-family:'Orbitron',monospace;font-size:16px;color:#ffd60a;margin-bottom:8px;">${item.name}</div>
-    <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;">${item.desc}</div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;">${item.desc||''}</div>
     <div style="font-size:28px;font-weight:900;color:#fff;margin-bottom:8px;">${item.price}</div>
     <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:20px;">Coming soon on Google Play</div>
-    <button id="iap-buy-btn" style="background:linear-gradient(135deg,#ffd60a,#ff9500);color:#000;border:none;padding:12px 30px;border-radius:50px;cursor:pointer;font-family:'Rubik',sans-serif;font-size:14px;font-weight:900;width:100%;margin-bottom:10px;">🛒 ${item.price} — Buy</button>
-    <button class="iap-back" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:10px 30px;border-radius:50px;cursor:pointer;font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;width:100%;">← Back</button>
+    <button onclick="this.closest('div').parentElement.remove()" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:10px 30px;border-radius:50px;cursor:pointer;font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;width:100%;">← Back</button>
   </div>`;
-  d.querySelector('.iap-back').onclick=()=>d.remove();
-  d.querySelector('#iap-buy-btn').onclick=()=>{
-    showPopup('🚧 Coming Soon!','#ffd60a');
-    d.remove();
-  };
   document.body.appendChild(d);
 }
+
+function handlePurchaseSuccess(id, token){
+  // מטבעות
+  if(id==='coins_200'){ addCoins(200); showPopup('🪙 +200 Coins!','#ffd60a'); }
+  else if(id==='coins_500'){ addCoins(500); showPopup('🪙 +500 Coins!','#ffd60a'); }
+  else if(id==='coins_1500'){ addCoins(1500); showPopup('🪙 +1500 Coins!','#ffd60a'); }
+  else if(id==='coins_2500'){ addCoins(2500); showPopup('🪙 +2500 Coins!','#ffd60a'); }
+  // פאוור-אפס
+  else if(id==='pu_slow'){ addPUStock('pu_slow'); showPopup('🐢 Slow Motion Added!','#00f5d4'); }
+  else if(id==='pu_wide'){ addPUStock('pu_wide'); showPopup('📏 Wide Block Added!','#00f5d4'); }
+  else if(id==='pu_shield'){ addPUStock('pu_shield'); showPopup('🛡️ Shield Added!','#00f5d4'); }
+  else if(id==='pu_double'){ addDoubleCoinsHours(12); showPopup('💎 +12h 2× Coins!','#ffd60a'); }
+  // מיוחדים
+  else if(id==='sp_noads'){ addNoAdsDays(7); showPopup('🚫 +7 Days No Ads!','#00f5d4'); }
+  else if(id==='sp_powerpack'){ ['pu_slow','pu_wide','pu_shield'].forEach(p=>addPUStock(p)); showPopup('⚡ Power Pack Ready!','#00f5d4'); }
+  else if(id==='sp_starter'){ addCoins(500); showPopup('🎮 Starter Pack!','#a259ff'); }
+  else if(id==='sp_vip_week'){
+    setPurchased('sp_vip_week'); addNoAdsDays(7); addCoins(1000);
+    SKINS.filter(s=>s.cat==='shop').forEach(s=>setPurchased('skin_'+s.id));
+    showPopup('👑 VIP Weekly!','#ffd60a');
+  }
+  else if(id==='sp_vip_month'){
+    setPurchased('sp_vip_month'); addNoAdsDays(30); addCoins(2000);
+    SKINS.filter(s=>s.cat==='shop').forEach(s=>setPurchased('skin_'+s.id));
+    showPopup('💎 VIP Monthly!','#ffd60a');
+  }
+  // סקינים
+  else if(id.startsWith('skin_')){
+    setPurchased(id);
+    const skinId=id.replace('skin_','');
+    selectSkin(skinId);
+    showPopup('🎨 Skin Unlocked!','#a259ff');
+  }
+  // רקעים
+  else if(id.startsWith('bg_')){
+    const bgId=id.replace('bg_','');
+    try{ localStorage.setItem('sr_bg_own_'+bgId,'1'); }catch(e){}
+    currentBg=bgId; setBg(bgId);
+    showPopup('🖼️ Background Unlocked!','#00f5d4');
+  }
+  updateCoinsHUD();
+  renderShop();
+}
+
+// אתחל בטעינה
+initDigitalGoods();
 
 const ACHIEVEMENTS = [
   // ─── CLASSIC ───
